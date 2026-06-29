@@ -563,9 +563,6 @@ footer{background:#15536e;color:#fff;}
             <label class="form-label">Wiadomość (opcjonalnie)</label>
             <textarea class="form-textarea" id="fMsg" rows="3" placeholder="Napisz, w czym mogę pomóc..."></textarea>
 
-            <div class="form-term" id="formTermDisplay">Wybrany termin: <strong id="formTermText">jeszcze nie wybrano</strong></div>
-            <input type="hidden" id="fTerm">
-
             <button type="submit" class="form-submit">Wyślij zgłoszenie</button>
             <p class="form-fine">Wysyłając formularz akceptujesz Regulamin. Odezwę się, aby potwierdzić termin.</p>
           </form>
@@ -582,29 +579,9 @@ footer{background:#15536e;color:#fff;}
 
       <!-- CALENDAR + INFO -->
       <div class="cal-sidebar">
-        <div class="cal-card">
-          <div class="cal-header">
-            <h3>Wolne terminy</h3>
-            <button type="button" class="cal-edit-btn" id="editBtn">Edytuj wolne godziny</button>
-          </div>
-          <p class="cal-hint" id="calHint">Kliknij wolny termin, aby go wybrać.</p>
-          <div class="cal-days-row">
-            <div></div>
-            <div class="cal-day-label">Pon</div>
-            <div class="cal-day-label">Wt</div>
-            <div class="cal-day-label">Śr</div>
-            <div class="cal-day-label">Czw</div>
-            <div class="cal-day-label">Pt</div>
-            <div class="cal-day-label">Sob</div>
-          </div>
-          <div class="cal-rows" id="calRows"></div>
-          <div class="cal-legend">
-            <span class="cal-legend-item"><span class="cal-legend-dot" style="background:#EDE6F5;outline:1.5px solid #CBB9E2;"></span>wolne</span>
-            <span class="cal-legend-item"><span class="cal-legend-dot" style="background:#9F86BC;"></span>wybrane</span>
-            <span class="cal-legend-item"><span class="cal-legend-dot" style="background:#F1F2E8;"></span>zajęte</span>
-          </div>
-          <p style="font-size:14px;color:#43525a;margin:14px 0 4px;line-height:1.5;">Nie widzisz dogodnego terminu? Napisz na <a href="mailto:kontakt@mathpoint-studio.com" style="color:#1A6281;font-weight:700;">kontakt@mathpoint-studio.com</a> - znajdziemy coś dla Ciebie.</p>
-          <p class="cal-note">Tryb edycji pozwala właścicielce zaznaczać i odznaczać wolne godziny - zmiany zapisują się w przeglądarce.</p>
+        <div class="cal-card" style="padding:0;overflow:hidden;">
+          <div class="calendly-inline-widget" data-url="https://calendly.com/kontakt-mathpoint-studio/30min?hide_gdpr_banner=1&primary_color=1a6281" style="min-width:280px;height:660px;"></div>
+          <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
         </div>
 
         <div class="contact-info">
@@ -673,88 +650,6 @@ footer{background:#15536e;color:#fff;}
 </footer>
 
 <script>
-// ── CALENDAR ─────────────────────────────────────────────────────────────────
-const DAYS = ['Pon','Wt','Śr','Czw','Pt'];
-const TIMES = ['13:00','14:00','15:00','16:00','17:00','18:00','19:00','20:00'];
-const SEED = {
-  'Pon 16:00':true,'Pon 17:00':true,
-  'Wt 15:00':true,'Wt 18:00':true,
-  'Śr 17:00':true,'Śr 19:00':true,
-  'Czw 16:00':true,'Czw 18:00':true,
-  'Pt 15:00':true,'Pt 16:00':true
-};
-
-let slots, selected = '', editMode = false;
-try { slots = JSON.parse(localStorage.getItem('mathpoint_slots') || 'null') || {...SEED}; }
-catch(e) { slots = {...SEED}; }
-
-function persist() {
-  try { localStorage.setItem('mathpoint_slots', JSON.stringify(slots)); } catch(e) {}
-}
-
-function renderCal() {
-  const container = document.getElementById('calRows');
-  container.innerHTML = '';
-  TIMES.forEach(t => {
-    const row = document.createElement('div');
-    row.className = 'cal-row';
-    const timeCell = document.createElement('div');
-    timeCell.className = 'cal-time';
-    timeCell.textContent = t;
-    row.appendChild(timeCell);
-    DAYS.forEach(d => {
-      const key = d + ' ' + t;
-      const free = !!slots[key];
-      const sel = selected === key;
-      const btn = document.createElement('button');
-      btn.type = 'button';
-      btn.className = 'cal-cell';
-      if (sel) {
-        btn.classList.add('selected');
-        btn.textContent = '✓';
-      } else if (free) {
-        btn.classList.add('free');
-        btn.textContent = 'wolne';
-      } else if (editMode) {
-        btn.classList.add('busy-edit');
-        btn.textContent = '+';
-      } else {
-        btn.classList.add('busy');
-        btn.textContent = '·';
-      }
-      btn.addEventListener('click', () => cellClick(key));
-      row.appendChild(btn);
-    });
-    container.appendChild(row);
-  });
-}
-
-function cellClick(key) {
-  if (editMode) {
-    if (slots[key]) delete slots[key];
-    else slots[key] = true;
-    persist();
-    renderCal();
-  } else {
-    if (!slots[key]) return;
-    selected = key;
-    document.getElementById('formTermText').textContent = key;
-    document.getElementById('fTerm').value = key;
-    document.getElementById('calHint').textContent = 'Wybrany termin: ' + key;
-    renderCal();
-  }
-}
-
-document.getElementById('editBtn').addEventListener('click', () => {
-  editMode = !editMode;
-  const btn = document.getElementById('editBtn');
-  btn.textContent = editMode ? '✓ Tryb edycji' : 'Edytuj wolne godziny';
-  btn.classList.toggle('active', editMode);
-  renderCal();
-});
-
-renderCal();
-
 // ── MODE BUTTONS ──────────────────────────────────────────────────────────────
 document.getElementById('modeBtns').addEventListener('click', e => {
   const btn = e.target.closest('.form-mode-btn');
