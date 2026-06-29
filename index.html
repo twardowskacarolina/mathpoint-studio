@@ -532,17 +532,17 @@ footer{background:#15536e;color:#fff;}
           <h3>Formularz kontaktowy</h3>
           <p style="font-size:15px;color:#43525a;margin:0 0 18px;">Masz pytanie lub chcesz umówić się na bezpłatną konsultację? Napisz - chętnie odpiszę!</p>
           <form id="contactForm" novalidate>
-            <label class="form-label">Imię ucznia lub rodzica</label>
+            <label class="form-label" for="fName">Imię ucznia lub rodzica</label>
             <input class="form-input" id="fName" type="text" placeholder="np. Anna" autocomplete="given-name">
             <span class="form-error" id="errName"></span>
             <div class="form-spacer"></div>
 
-            <label class="form-label">Telefon lub e-mail</label>
+            <label class="form-label" for="fContact">Telefon lub e-mail</label>
             <input class="form-input" id="fContact" type="text" placeholder="794 050 245 lub mail@...">
             <span class="form-error" id="errContact"></span>
             <div class="form-spacer"></div>
 
-            <label class="form-label">Etap nauki</label>
+            <label class="form-label" for="fLevel">Etap nauki</label>
             <select class="form-input" id="fLevel">
               <option value="">Wybierz...</option>
               <option>Szkoła podstawowa (kl. 4–7)</option>
@@ -556,14 +556,14 @@ footer{background:#15536e;color:#fff;}
             <span class="form-error" id="errLevel"></span>
             <div class="form-spacer"></div>
 
-            <label class="form-label">Forma zajęć</label>
+            <label class="form-label" for="modeBtns">Forma zajęć</label>
             <div class="form-modes" id="modeBtns">
               <button type="button" class="form-mode-btn active" data-mode="Stacjonarnie">Stacjonarnie</button>
               <button type="button" class="form-mode-btn" data-mode="Online">Online</button>
               <button type="button" class="form-mode-btn" data-mode="Hybrydowo">Hybrydowo</button>
             </div>
 
-            <label class="form-label">Wiadomość (opcjonalnie)</label>
+            <label class="form-label" for="fMsg">Wiadomość (opcjonalnie)</label>
             <textarea class="form-textarea" id="fMsg" rows="3" placeholder="Napisz, w czym mogę pomóc..."></textarea>
 
             <button type="submit" class="form-submit">Wyślij zgłoszenie</button>
