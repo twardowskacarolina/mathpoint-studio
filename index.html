@@ -11,7 +11,7 @@
 <meta property="og:description" content="Matematyka z pasji. Zrozum zamiast wkuwać - spokój dla Ciebie, jasność dla Twojego dziecka.">
 <meta property="og:type" content="website">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"EducationalOrganization","name":"MathPoint Studio","alternateName":"Lucidus","description":"Korepetycje z matematyki bez presji - szkoła podstawowa, egzamin ósmoklasisty, matura podstawowa i rozszerzona. Zajęcia stacjonarne, online i hybrydowe.","founder":{"@type":"Person","name":"Maria Jodłowska"},"telephone":"+48794050245","email":"kontakt@mathpoint-studio.com","slogan":"Matematyka z pasji. Zrozum zamiast wkuwać.","areaServed":"PL"}
+{"@context":"https://schema.org","@type":"EducationalOrganization","name":"MathPoint Studio","description":"Korepetycje z matematyki bez presji - szkoła podstawowa, egzamin ósmoklasisty, matura podstawowa i rozszerzona. Zajęcia stacjonarne, online i hybrydowe.","founder":{"@type":"Person","name":"Maria Jodłowska"},"telephone":"+48794050245","email":"kontakt@mathpoint-studio.com","slogan":"Matematyka z pasji. Zrozum zamiast wkuwać.","areaServed":"PL","address":{"@type":"PostalAddress","addressLocality":"Proszówki","postalCode":"32-700","addressRegion":"Małopolska","addressCountry":"PL"}}
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -598,6 +598,7 @@ footer{background:#15536e;color:#fff;}
             <span class="cal-legend-item"><span class="cal-legend-dot" style="background:#9F86BC;"></span>wybrane</span>
             <span class="cal-legend-item"><span class="cal-legend-dot" style="background:#F1F2E8;"></span>zajęte</span>
           </div>
+          <p class="cal-note">Nie widzisz dogodnego terminu? Napisz na <a href="mailto:kontakt@mathpoint-studio.com" style="color:#1A6281;font-weight:600;">kontakt@mathpoint-studio.com</a> - znajdziemy coś dla Ciebie.</p>
           <p class="cal-note">Tryb edycji pozwala właścicielce zaznaczać i odznaczać wolne godziny - zmiany zapisują się w przeglądarce.</p>
         </div>
 
@@ -611,9 +612,13 @@ footer{background:#15536e;color:#fff;}
             <span class="contact-icon">✉️</span>
             <span><span class="contact-label">E-mail</span><span class="contact-value-sm">kontakt@mathpoint-studio.com</span></span>
           </a>
-          <div class="contact-info-row" style="margin-bottom:0;">
+          <div class="contact-info-row">
             <span class="contact-icon">💬</span>
             <span><span class="contact-label">WhatsApp</span><span class="contact-value-sm">stały kontakt w cenie zajęć</span></span>
+          </div>
+          <div class="contact-info-row" style="margin-bottom:0;">
+            <span class="contact-icon">📍</span>
+            <span><span class="contact-label">Zajęcia stacjonarne</span><span class="contact-value-sm">Proszówki 32-700, Małopolska</span></span>
           </div>
           <div class="contact-divider">💡 Szczegółowy cennik wysyłam mailowo po wcześniejszym kontakcie - dobiorę ofertę do potrzeb ucznia.</div>
         </div>
@@ -646,6 +651,7 @@ footer{background:#15536e;color:#fff;}
         <a href="tel:+48794050245">📞 794 050 245</a>
         <a href="mailto:kontakt@mathpoint-studio.com">✉️ kontakt@mathpoint-studio.com</a>
         <span>Zajęcia: stacjonarnie, online, hybrydowo</span>
+        <span>📍 Proszówki 32-700, Małopolska</span>
         <div style="display:flex;gap:14px;margin-top:6px;">
           <a href="https://www.instagram.com/mathpoint.studio?igsh=OWs3OXRpbWZ3NHB1" target="_blank" rel="noopener" aria-label="Instagram" style="display:flex;align-items:center;color:rgba(255,255,255,.7);transition:color .15s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,.7)'"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
           <a href="https://www.facebook.com/share/18hFQ9vvrU/?mibextid=wwXIfr" target="_blank" rel="noopener" aria-label="Facebook" style="display:flex;align-items:center;color:rgba(255,255,255,.7);transition:color .15s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,.7)'"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
@@ -655,7 +661,7 @@ footer{background:#15536e;color:#fff;}
   </div>
   <div class="footer-bottom">
     <div class="footer-bottom-inner">
-      <span>© 2026 MathPoint Studio · Lucidus - Maria Jodłowska</span>
+      <span>© 2026 MathPoint Studio - Maria Jodłowska</span>
       <span>Obowiązuje Regulamin</span>
     </div>
   </div>
@@ -664,7 +670,7 @@ footer{background:#15536e;color:#fff;}
 <script>
 // ── CALENDAR ─────────────────────────────────────────────────────────────────
 const DAYS = ['Pon','Wt','Śr','Czw','Pt','Sob'];
-const TIMES = ['15:00','16:00','17:00','18:00','19:00'];
+const TIMES = ['13:00','14:00','15:00','16:00','17:00','18:00','19:00','20:00'];
 const SEED = {
   'Pon 16:00':true,'Pon 17:00':true,
   'Wt 15:00':true,'Wt 18:00':true,
