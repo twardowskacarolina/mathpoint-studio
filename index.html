@@ -764,12 +764,14 @@ document.getElementById('modeBtns').addEventListener('click', e => {
 });
 
 // ── FORM ──────────────────────────────────────────────────────────────────────
-document.getElementById('contactForm').addEventListener('submit', e => {
+document.getElementById('contactForm').addEventListener('submit', async e => {
   e.preventDefault();
   const name = document.getElementById('fName').value.trim();
   const contact = document.getElementById('fContact').value.trim();
   const level = document.getElementById('fLevel').value;
   const term = document.getElementById('fTerm').value || 'jeszcze nie wybrano';
+  const mode = document.querySelector('.form-mode-btn.active')?.dataset.mode || '';
+  const msg = document.getElementById('fMsg').value.trim();
 
   let valid = true;
 
@@ -797,9 +799,36 @@ document.getElementById('contactForm').addEventListener('submit', e => {
 
   if (!valid) return;
 
-  document.getElementById('formWrap').style.display = 'none';
-  document.getElementById('successWrap').style.display = '';
-  document.getElementById('successTerm').textContent = term;
+  const btn = document.querySelector('.form-submit');
+  btn.textContent = 'Wysyłanie...';
+  btn.disabled = true;
+
+  try {
+    const data = new FormData();
+    data.append('name', name);
+    data.append('contact', contact);
+    data.append('level', level);
+    data.append('mode', mode);
+    data.append('msg', msg);
+    data.append('term', term);
+
+    const res = await fetch('wyslij.php', { method: 'POST', body: data });
+    const json = await res.json();
+
+    if (json.ok) {
+      document.getElementById('formWrap').style.display = 'none';
+      document.getElementById('successWrap').style.display = '';
+      document.getElementById('successTerm').textContent = term;
+    } else {
+      btn.textContent = 'Wyślij zgłoszenie';
+      btn.disabled = false;
+      alert(json.error || 'Coś poszło nie tak. Napisz bezpośrednio na kontakt@mathpoint-studio.com');
+    }
+  } catch {
+    btn.textContent = 'Wyślij zgłoszenie';
+    btn.disabled = false;
+    alert('Błąd połączenia. Napisz bezpośrednio na kontakt@mathpoint-studio.com');
+  }
 });
 
 function showErr(id, msg) {
