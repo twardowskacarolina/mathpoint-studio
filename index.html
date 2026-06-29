@@ -598,7 +598,7 @@ footer{background:#15536e;color:#fff;}
             <span class="cal-legend-item"><span class="cal-legend-dot" style="background:#9F86BC;"></span>wybrane</span>
             <span class="cal-legend-item"><span class="cal-legend-dot" style="background:#F1F2E8;"></span>zajęte</span>
           </div>
-          <p class="cal-note">Nie widzisz dogodnego terminu? Napisz na <a href="mailto:kontakt@mathpoint-studio.com" style="color:#1A6281;font-weight:600;">kontakt@mathpoint-studio.com</a> - znajdziemy coś dla Ciebie.</p>
+          <p style="font-size:14px;color:#43525a;margin:14px 0 4px;line-height:1.5;">Nie widzisz dogodnego terminu? Napisz na <a href="mailto:kontakt@mathpoint-studio.com" style="color:#1A6281;font-weight:700;">kontakt@mathpoint-studio.com</a> - znajdziemy coś dla Ciebie.</p>
           <p class="cal-note">Tryb edycji pozwala właścicielce zaznaczać i odznaczać wolne godziny - zmiany zapisują się w przeglądarce.</p>
         </div>
 
@@ -669,15 +669,14 @@ footer{background:#15536e;color:#fff;}
 
 <script>
 // ── CALENDAR ─────────────────────────────────────────────────────────────────
-const DAYS = ['Pon','Wt','Śr','Czw','Pt','Sob'];
+const DAYS = ['Pon','Wt','Śr','Czw','Pt'];
 const TIMES = ['13:00','14:00','15:00','16:00','17:00','18:00','19:00','20:00'];
 const SEED = {
   'Pon 16:00':true,'Pon 17:00':true,
   'Wt 15:00':true,'Wt 18:00':true,
   'Śr 17:00':true,'Śr 19:00':true,
   'Czw 16:00':true,'Czw 18:00':true,
-  'Pt 15:00':true,'Pt 16:00':true,
-  'Sob 15:00':true
+  'Pt 15:00':true,'Pt 16:00':true
 };
 
 let slots, selected = '', editMode = false;
