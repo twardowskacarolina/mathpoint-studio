@@ -8,12 +8,17 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
+// honeypot
+if (!empty($_POST['website'])) {
+    echo json_encode(['ok' => true]);
+    exit;
+}
+
 $name    = trim($_POST['name']    ?? '');
 $contact = trim($_POST['contact'] ?? '');
 $level   = trim($_POST['level']   ?? '');
 $mode    = trim($_POST['mode']    ?? '');
 $msg     = trim($_POST['msg']     ?? '');
-$term    = trim($_POST['term']    ?? '');
 
 // walidacja
 if (!$name || !$contact || !$level) {
@@ -39,7 +44,6 @@ $body .= "Imię:        $name\n";
 $body .= "Kontakt:     $contact\n";
 $body .= "Etap nauki:  $level\n";
 $body .= "Forma:       $mode\n";
-$body .= "Termin:      " . ($term ?: 'nie wybrano') . "\n";
 if ($msg) {
     $body .= "\nWiadomość:\n$msg\n";
 }
