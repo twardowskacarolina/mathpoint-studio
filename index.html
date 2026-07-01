@@ -37,14 +37,28 @@ button{font-family:'DM Sans',sans-serif;}
 
 /* NAV */
 .nav{position:sticky;top:0;z-index:60;background:rgba(251,251,246,.86);backdrop-filter:blur(14px);border-bottom:1px solid #E8E9DA;}
-.nav-inner{max-width:1180px;margin:0 auto;padding:11px 24px;display:flex;align-items:center;gap:18px;flex-wrap:wrap;}
+.nav-inner{max-width:1180px;margin:0 auto;padding:11px 24px;display:flex;align-items:center;gap:18px;}
 .nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none;}
 .nav-logo img{width:56px;height:56px;border-radius:0;object-fit:contain;}
 .nav-logo span{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:18px;color:#1A6281;letter-spacing:-.02em;}
 .nav-logo span em{color:#9F86BC;font-style:normal;}
-.nav-links{margin-left:auto;display:flex;align-items:center;gap:26px;flex-wrap:wrap;}
+.nav-links{margin-left:auto;display:flex;align-items:center;gap:26px;}
 .nav-links a{text-decoration:none;color:#43525a;font-weight:500;font-size:15px;}
 .nav-cta{text-decoration:none;background:#1A6281;color:#fff !important;font-weight:600;font-size:15px;padding:10px 18px;border-radius:999px;box-shadow:0 4px 14px rgba(26,98,129,.25);}
+.nav-hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:6px;margin-left:auto;}
+.nav-hamburger span{display:block;width:22px;height:2px;background:#43525a;border-radius:2px;transition:.2s;}
+.nav-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.nav-hamburger.open span:nth-child(2){opacity:0;}
+.nav-hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+.nav-mobile{display:none;flex-direction:column;background:rgba(251,251,246,.98);border-bottom:1px solid #E8E9DA;padding:0 24px;}
+.nav-mobile.open{display:flex;}
+.nav-mobile a{padding:13px 0;font-size:15px;font-weight:500;color:#43525a;text-decoration:none;border-bottom:1px solid #E8E9DA;}
+.nav-mobile a:last-child{border:none;}
+.nav-mobile .nav-cta{margin:14px 0;text-align:center;display:block;}
+@media(max-width:768px){
+  .nav-links{display:none;}
+  .nav-hamburger{display:flex;}
+}
 
 /* HERO */
 .hero{position:relative;overflow:hidden;background:radial-gradient(130% 120% at 82% -10%, #E7E9D7 0%, #F3F4E9 42%, #FBFBF6 72%);}
@@ -248,6 +262,18 @@ footer{background:#15536e;color:#fff;}
       <a href="https://www.facebook.com/share/18hFQ9vvrU/?mibextid=wwXIfr" target="_blank" rel="noopener" aria-label="Facebook" style="display:flex;align-items:center;color:#43525a;transition:color .15s;" onmouseover="this.style.color='#1A6281'" onmouseout="this.style.color='#43525a'"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
       <a href="#kontakt" class="nav-cta">Darmowa konsultacja</a>
     </div>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Menu" onclick="toggleNav()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="nav-mobile" id="navMobile">
+    <a href="#o-mnie" onclick="closeNav()">O mnie</a>
+    <a href="#oferta" onclick="closeNav()">Oferta</a>
+    <a href="#warsztaty" onclick="closeNav()">Warsztaty</a>
+    <a href="#opinie" onclick="closeNav()">Opinie</a>
+    <a href="https://www.instagram.com/mathpoint.studio?igsh=OWs3OXRpbWZ3NHB1" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://www.facebook.com/share/18hFQ9vvrU/?mibextid=wwXIfr" target="_blank" rel="noopener">Facebook</a>
+    <a href="#kontakt" class="nav-cta" onclick="closeNav()">Darmowa konsultacja</a>
   </div>
 </nav>
 
@@ -656,6 +682,16 @@ footer{background:#15536e;color:#fff;}
 </footer>
 
 <script>
+// ── MOBILE NAV ───────────────────────────────────────────────────────────────
+function toggleNav() {
+  document.getElementById('navMobile').classList.toggle('open');
+  document.getElementById('navHamburger').classList.toggle('open');
+}
+function closeNav() {
+  document.getElementById('navMobile').classList.remove('open');
+  document.getElementById('navHamburger').classList.remove('open');
+}
+
 // ── MODE BUTTONS ──────────────────────────────────────────────────────────────
 document.getElementById('modeBtns').addEventListener('click', e => {
   const btn = e.target.closest('.form-mode-btn');
