@@ -577,7 +577,6 @@ footer{background:#15536e;color:#fff;}
             <div class="form-success-icon">✓</div>
             <h3>Dziękuję za zgłoszenie!</h3>
             <p>Odezwę się wkrótce, aby potwierdzić termin i przesłać szczegółowy cennik.</p>
-            <p class="form-success-term">Wybrany termin: <strong id="successTerm"></strong></p>
           </div>
         </div>
       </div>
@@ -669,7 +668,7 @@ document.getElementById('contactForm').addEventListener('submit', async e => {
   const name = document.getElementById('fName').value.trim();
   const contact = document.getElementById('fContact').value.trim();
   const level = document.getElementById('fLevel').value;
-  const term = document.getElementById('fTerm').value || 'jeszcze nie wybrano';
+  const term = '';
   const mode = document.querySelector('.form-mode-btn.active')?.dataset.mode || '';
   const msg = document.getElementById('fMsg').value.trim();
 
@@ -710,7 +709,6 @@ document.getElementById('contactForm').addEventListener('submit', async e => {
     data.append('level', level);
     data.append('mode', mode);
     data.append('msg', msg);
-    data.append('term', term);
 
     const res = await fetch('wyslij.php', { method: 'POST', body: data });
     const json = await res.json();
@@ -718,7 +716,6 @@ document.getElementById('contactForm').addEventListener('submit', async e => {
     if (json.ok) {
       document.getElementById('formWrap').style.display = 'none';
       document.getElementById('successWrap').style.display = '';
-      document.getElementById('successTerm').textContent = term;
     } else {
       btn.textContent = 'Wyślij zgłoszenie';
       btn.disabled = false;
